@@ -9,21 +9,29 @@ class Line
   end
 
   def join(person)
+    self.members << person;
+    return self.members;
   end
 
   def leave(person)
+    self.members.delete(person);
   end
 
   def front
+    self.members(0);
   end
 
   def middle
+    var middle = ((self.members.length)/2).ceil
+    return self.members(middle)
   end
 
   def back
+    self.members(array.length);
   end
 
   def search(person)
+    self.members.bsearch {|x| x === person};
   end
 
   private
