@@ -1,0 +1,13 @@
+How does your data structure allow developers to access and manipulate the data?
+
+*The array data structure is easy to manipulate and access using various array methods.
+
+If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+*The array method "bsearch", short for binary search, allows a developer to verify if a specific element exists in the array.
+
+What other real-world data can each structure represent?
+
+This data structure could be used to represent a wide variety of list-like data.
+For example, lines and queues perhaps can mimic requests for certain services on e-commerce sites or in-demand services.
+Mailing lists, survey response data, etc come to mind.  
