@@ -9,11 +9,11 @@ class Line
   end
 
   def join(person)
-    Line << person;
+    members << person;
   end
 
   def leave(person)
-    Line.delete(person);
+    members.delete(person);
   end
 
   def front

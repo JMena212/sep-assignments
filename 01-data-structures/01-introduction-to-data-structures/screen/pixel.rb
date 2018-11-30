@@ -11,43 +11,41 @@ class Pixel
   attr_accessor :y
 
 
+
   def initialize(red, green, blue, x, y)
-    Pixel.red = red;
-    Pixel.green = green;
-    Pixel.blue = blue;
-    Pixel.x = x;
-    Pixel.y = y;
-
-    if (red < 0)
-      red == 0
-    end
-
-    if (red > 255)
-      red == 0
-    end
-
-    if (green < 0)
-      green == 0
-    end
-
-    if (green > 255)
-      green == 255
-    end
-
-    if (blue < 0)
-      blue == 0
-    end
-
-    if (blue > 255)
-      blue == 255
-    end
-
-
+    self.red = red
+    self.green = green;
+    self.blue = blue;
+    self.x = x;
+    self.y = y;
   end
 
   private
 
-  def validate_color(color)
+  def validate_color(color)if (red < 0)
+    self.red == 0
+  end
+
+  if (red > 255)
+    self.red == 255
+  end
+
+  if (green < 0)
+    self.green == 0
+  end
+
+  if (green > 255)
+    self.green == 255
+  end
+
+  if (blue < 0)
+    self.blue == 0
+  end
+
+  if (blue > 255)
+    self.blue == 255
+  end
+
   end
 
 end
