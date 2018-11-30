@@ -27,13 +27,22 @@ class Pixel
     end
 
     if (green < 0)
-      red == 0
+      green == 0
     end
 
     if (green > 255)
-      red == 0
+      green == 255
     end
-      
+
+    if (blue < 0)
+      blue == 0
+    end
+
+    if (blue > 255)
+      blue == 255
+    end
+
+
   end
 
   private
