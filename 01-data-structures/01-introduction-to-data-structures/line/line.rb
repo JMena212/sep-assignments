@@ -8,30 +8,37 @@ class Line
     self.members = []
   end
 
+  def search(person)
+   target = []
+   members.each do |member|
+     if person == member
+       target << member
+     end
+   end
+   return target[0]
+  end
+
   def join(person)
     members << person;
   end
 
-  def leave(person)
-    members.delete(person);
+  def front
+    members[0];
   end
 
-  def front
-    Line[0];
+  def leave(person)
+    members.delete(person)
   end
 
   def middle
-    var middle = ((Line.length)/2).ceil
-    return Line[middle]
+    middle = ((members.length)/2).ceil;
+    return members[middle];
   end
 
   def back
-    Line[Line.length - 1];
+    members[members.length - 1];
   end
 
-  def search(person)
-    Line.bsearch {|x| x === person};
-  end
 
   private
 
