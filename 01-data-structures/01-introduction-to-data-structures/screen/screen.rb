@@ -6,6 +6,8 @@ class Screen
   attr_accessor :matrix
 
   def initialize(width, height)
+    Screen.width = width;
+    Screen.height = height;
   end
 
   # Insert a Pixel at x, y
