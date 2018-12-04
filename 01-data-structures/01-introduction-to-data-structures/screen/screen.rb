@@ -6,17 +6,17 @@ class Screen
   attr_accessor :matrix
 
   def initialize(width, height)
-    Screen.width = width;
-    Screen.height = height;
+    @width = width;
+    @height = height;
+    @matrix = Array.new(@height) {Array.new(@width)}
   end
-
   # Insert a Pixel at x, y
   def insert(pixel, x, y)
-    Pixel.new(Pixel.red, Pixel.green, Pixel.blue, x, y);
+    @matrix[x][y] = pixel
   end
 
   def at(x, y)
-    return Pixel(Pixel.x, Pixel.y);
+    inbounds(x,y)? @matrix[x][y] : nil
   end
 
   private
@@ -24,10 +24,12 @@ class Screen
   def inbounds(x, y)
     if x < 0
       return nil
+    else x
     end
 
     if y < 0
       return nil
+    else y
     end
 
   end
