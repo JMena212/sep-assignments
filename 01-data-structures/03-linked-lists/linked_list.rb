@@ -28,7 +28,7 @@ class LinkedList
         end
   currentNode = currentNode.next
       end
-          currentNode = currentNode.next
+
   end
 
   # This method prints out a representation of the list.
