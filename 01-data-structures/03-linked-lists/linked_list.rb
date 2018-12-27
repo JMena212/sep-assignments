@@ -55,8 +55,17 @@ class LinkedList
 
   # This method removes `node` from the list and must keep the rest of the list intact.
   def delete(node)
-
-
+     if  @head == node
+       remove_front
+     elsif node == @tail
+       remove_tail
+     else
+       currentNode = @head
+       until currentNode.next == node
+         currentNode = currentNode.next
+       end
+       currentNode.next = currentNode.next.next
+    end
   end
   # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
   def remove_front
