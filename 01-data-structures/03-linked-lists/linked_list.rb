@@ -46,10 +46,11 @@ class LinkedList
   # This method prints out a representation of the list.
   def print
     currentNode = @head
-    while currentNode.next != nil
-      print currentNode.data
+    while currentNode != nil
+      puts currentNode.data
       currentNode = currentNode.next
     end
+
   end
 
   # This method removes `node` from the list and must keep the rest of the list intact.
@@ -57,10 +58,9 @@ class LinkedList
 
 
   end
-    # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
-    def remove_front
-
-    end
+  # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
+  def remove_front
 
   end
+
 end
