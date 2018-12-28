@@ -43,6 +43,16 @@ class LinkedList
   end
 
 
+  def at(x)
+    currentNode = @head
+    i = 0
+    until i == x
+      i += 1
+      currentNode = currentNode.next
+    end
+    currentNode
+  end
+
   # This method prints out a representation of the list.
   def print
     currentNode = @head
@@ -50,7 +60,6 @@ class LinkedList
       puts currentNode.data
       currentNode = currentNode.next
     end
-
   end
 
   # This method removes `node` from the list and must keep the rest of the list intact.

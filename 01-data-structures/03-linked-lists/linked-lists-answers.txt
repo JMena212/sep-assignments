@@ -1,0 +1,22 @@
+What is Spatial Locality and why does it benefit performance?
+
+Spatial locality refers to the use of consecutive memory locations.
+Arrays use up memory locations and are predictable in terms of memory addresses of
+elements. Elements in an array are all next to each other in memory. This
+benefits performance because it is cache-friendly. Linked Lists do not exhibit
+spacial locality as each node is independent in memory. The operating system can
+use any available memory location to store a node. Although this is helpful in
+helping linked lists grow comfortably to large sizes, it can result in cache misses.
+
+
+Benchmarks
+
+Time for 10,000 item array: .00059  SIGNIFICANTLY FASTER
+Time for 10,000 item linked list: .002853
+
+Time to find the item at 5000 index in array: .000003 SIGNIFICANTLY FASTER
+Time to find linked list node #5000:          .000181
+
+
+Time to delete the item at index 5000: .000005 SIGNIFICANTLY FASTER
+Time to delete the 5000th node in the list: .000358
