@@ -7,18 +7,13 @@ class HashClass
 
 #setter? @items.size
   def []=(key, value)
-    hash_index = index(key, size) #items.size
     new_entry = HashItem.new(key, value)
-
-  
-
+    @items[index(key, @items.size)] = new_entry
   end
 
 #getter
   def [](key)
-    #retrieve the value at this key
-    #Hash[key] = value
-    hash_item = @items[index(key, @items.size)]
+  @items[index(key, @items.size)].value
 
   end
 
