@@ -4,5 +4,10 @@ class Node
   attr_accessor :value
 
   def initialize(key, value)
+    self.data = data
+    self.next = nil
+    self.value = value
+    self.key = key
   end
+
 end
