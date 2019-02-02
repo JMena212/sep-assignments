@@ -2,11 +2,12 @@ require_relative 'node'
 
 class OpenAddressing
   def initialize(size)
-
+   @nodes = Array.new(size)
+   @size = size 
   end
 
   def []=(key, value)
-    new_entry = HashItem.new(key, value)
+    new_entry = Node.new(key, value)
       entry = index(key,size)
       if @items[entry] == nil  || @items[entry].value  == value
         @items[entry] = new_entry
@@ -32,20 +33,10 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    #COMPUTE the hash code for key, ASSIGN to index
-    self.index(key, self.size)
-    
-
-    WHILE a key and value exist at array[index]
-     while @items
-      #  INCREMENT index by 1
-      #  IF we've checked the entire array THEN
-      #      CALL RESIZE
-      #      CALL INSERT(key, value)
-      #      RETURN
-      #  END IF
-    #END WHILE
-    #SET array[index] to the new key and value
+    while @nodes[index]
+      index += 1
+    end
+    if
   end
 
   # Simple method to return the number of items in the hash
