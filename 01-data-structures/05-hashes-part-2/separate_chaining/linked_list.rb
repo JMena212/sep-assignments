@@ -3,6 +3,7 @@ require_relative 'node'
 class LinkedList
   attr_accessor :head
   attr_accessor :tail
+  attr_accessor :size
 
   # This method creates a new `Node` using `data`, and inserts it at the end of the list.
   def add_to_tail(node)
@@ -11,6 +12,7 @@ class LinkedList
     if @head == nil
       @head = node
     end
+    @size++
   end
 
   # This method removes the last node in the lists and must keep the rest of the list intact.
@@ -20,6 +22,7 @@ class LinkedList
     elsif @tail == @head
       @tail = nil
       @head = nil
+      @size--
     else
       currentNode = @head
       until currentNode.next == @tail
@@ -27,6 +30,7 @@ class LinkedList
       end
       currentNode.next = nil
       @tail = currentNode
+      @size--
     end
   end
 
@@ -51,6 +55,7 @@ class LinkedList
         currentNode = currentNode.next
       end
       currentNode.next = currentNode.next.next
+      @size--
     end
   end
 
@@ -62,6 +67,7 @@ class LinkedList
     if @tail == nil
       @tail = node
     end
+    @size++
   end
 
   # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
@@ -71,10 +77,12 @@ class LinkedList
     elsif @head.next == nil
       @tail = nil
       @head = nil
+      @size--
     else
       tempNode = @head
       @head = tempNode.next
       tempNode = nil
+      @size--
     end
   end
 end

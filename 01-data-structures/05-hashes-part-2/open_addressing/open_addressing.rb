@@ -2,26 +2,42 @@ require_relative 'node'
 
 class OpenAddressing
   def initialize(size)
-   @nodes = Array.new(size)
-   @size = size 
+    @nodes = Array.new(size)
+    @size = size
   end
 
   def []=(key, value)
-    new_entry = Node.new(key, value)
-      entry = index(key,size)
-      if @items[entry] == nil  || @items[entry].value  == value
-        @items[entry] = new_entry
-      elsif @items[entry].key != new_entry.key
+    i = index(key, size)
+    entry = @nodes[i]
+    new_entry = Node.new(key,value)
+    if entry == nil || entry.value == value
+    @nodes[i] = new_entry
+    elsif entry.key != key
+      while @nodes[index(key, @size)].key != nil && @nodes[index(key, @size)].key != key
         self.resize
-        self[key] = value
-      else @items[entry].value != new_entry.value
+        new_index = index(key, @size)
+        break if @nodes[new_index] == nil
+      end
+      self[key] = value
+    elsif entry.key == key && entry.value != value
+      if next_open_index(i) == -1
         self.resize
-        @items[entry] = value
+        new_index = index(key, @size)
+        @nodes[new_index].value = value
+      else
+        open_index = next_open_index(index(key, @size))
+        @nodes[open_index] = value
       end
     end
+  end
 
   def [](key)
-    @items[self.index(key, self.size)].value
+    node = @nodes[self.index(key, @size)]
+    if node == nil
+      nil
+    else
+      node.value
+    end
   end
 
   # Returns a unique, deterministically reproducible index into an array
@@ -31,25 +47,30 @@ class OpenAddressing
     key.sum % size
   end
 
-  # Given an index, find the next open index in @items
   def next_open_index(index)
     while @nodes[index]
       index += 1
     end
-    if
+    if index >= @size
+      return -1
+    else
+      return index
+    end
   end
 
-  # Simple method to return the number of items in the hash
   def size
-    @items.length
+    @nodes.length
   end
 
-  # Resize the hash
   def resize
-    small_hash = @items.compact #compact removes nil and the error related to calling .key or .value on a nil array element!!!
-    @items = Array.new(self.size * 2)
-    small_hash.each do |entry|
-        self[entry.key] = entry.value
+    @size = @size * 2
+    new_hash = Array.new(@size)
+    @nodes.each do |node|
+      if node != nil
+        new_hash[index(node.key, @size)] = node
       end
+    end
+    @nodes = new_hash
   end
+
 end
