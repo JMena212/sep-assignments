@@ -18,9 +18,22 @@ def []=(key, value)
      oldHead = head.next
    end
 
-1. Go to index and see if anything is there (entry is either nil or linked_list).
-2. If nothing is there create linked list and insert new node with key and value
-3. If something is there: first check the size (if size = 5, resize and call insert), if size less than 5 add to add_to_tail
+
+   if index != nil
+     if size >=5
+       resize entire hash
+       insert new node add_to_tail
+     else
+       add_to_tail
+     end
+   else
+     add_to_tail
+   end
+
+
+#1. Go to index and see if anything is there (entry is either nil or linked_list).
+#2. If nothing is there create linked list and insert new node with key and value
+#3. If something is there: first check the size (if size = 5, resize and call insert), if size less than 5 add to add_to_tail
 
 
 
