@@ -14,14 +14,14 @@ class SeparateChaining
     new_entry = Node.new(key,value)
     chain = @array[@index]
     if chain != nil
-      if @nodes >= 5 || load_factor > max_load
+      if @nodes >= 5 || load_factor > @max_load_factor
         resize
         chain.add_to_tail(new_entry)
       end
       chain.add_to_tail(new_entry)
     else
-      chain = LinkedList.new
-      chain.add_to_tail(new_entry)
+      @array[@index] = LinkedList.new
+      @array[@index].add_to_tail(new_entry)
     end
     chain = @array[@index]
     @nodes += 1
@@ -33,24 +33,16 @@ class SeparateChaining
     #2. If nothing is there create linked list and insert new node with key and value
     #3. If something is there: first check the size (if size = 5, resize and call insert), if size less than 5 add to add_to_tail
 
-
-    def [](key)
-      chain = @array[@index]
-      puts chain
-      if chain != nil
-        current_node = chain.head
-        puts current_node
-        while current_node != nil
-          if current_node.key == key
-            return current_node.value
-            puts current_node
-          end
-          current_node = current_node.next
-          puts current_node
-        end
+   def [](key)
+    i = index(key, size)
+    if @array[i]
+      node = @array[i].head
+      while node != nil
+        return node.value if node.key == key
+        node = node.next
       end
     end
-
+  end
     # Returns a unique, deterministically reproducible index into an array
     # We are hashing based on strings, let's use the ascii value of each string as
     # a starting point.
@@ -61,8 +53,8 @@ class SeparateChaining
     # Calculate the current load factor
     #if load factor is greater than certain value then resize
     def load_factor
-      @nodes / @array.length
-      max_load = 0.7
+      a = @nodes / @array.length
+      return a.to_f
     end
 
     # Simple method to return the number of items in the hash, same spot where i check size of linked_list
@@ -72,13 +64,21 @@ class SeparateChaining
 
     # Resize the hash
     def resize
-      @size = @size * 2
+      @size = size * 2
       new_hash = Array.new(@size)
-      @array.each do |node|
-        if node != nil
-          new_hash[index(node.key, @size)] = node
+      @array.each do |nodes|
+        if nodes
+          current_node = nodes.head
+          while current_node
+            i = index(current_node.key, new_hash.size)
+            if new_hash[i].nil?
+              new_hash[i] = LinkedList.new
+            end
+              new_hash[i].add_to_tail(Node.new(current_node.key,current_node.value))
+              current_node = current_node.next
+            end
+          end
+          @array = new_hash
         end
-      end
-      @array = new_hash
-    end
   end
+end
