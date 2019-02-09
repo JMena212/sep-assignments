@@ -10,21 +10,21 @@ class SeparateChaining
   end
 
   def []=(key, value)
-    i = index(key, @array.size)
-    entry = @array[i]
+    @index = index(key, @array.length)
     new_entry = Node.new(key,value)
-
-    if entry != nil
-      chain = entry
-      if chain.size >= 5 || load_factor > max_load
-        @resize
+    chain = @array[@index]
+    if chain != nil
+      if @nodes >= 5 || load_factor > max_load
+        resize
         chain.add_to_tail(new_entry)
       end
+      chain.add_to_tail(new_entry)
     else
       chain = LinkedList.new
       chain.add_to_tail(new_entry)
     end
-      @nodes += 1
+    chain = @array[@index]
+    @nodes += 1
   end
 
 
@@ -34,9 +34,21 @@ class SeparateChaining
     #3. If something is there: first check the size (if size = 5, resize and call insert), if size less than 5 add to add_to_tail
 
 
-
     def [](key)
-      @array[self.index(key, @array.size)].value
+      chain = @array[@index]
+      puts chain
+      if chain != nil
+        current_node = chain.head
+        puts current_node
+        while current_node != nil
+          if current_node.key == key
+            return current_node.value
+            puts current_node
+          end
+          current_node = current_node.next
+          puts current_node
+        end
+      end
     end
 
     # Returns a unique, deterministically reproducible index into an array
@@ -49,7 +61,7 @@ class SeparateChaining
     # Calculate the current load factor
     #if load factor is greater than certain value then resize
     def load_factor
-      (@nodes/@size).to_f
+      @nodes / @array.length
       max_load = 0.7
     end
 
