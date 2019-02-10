@@ -6,27 +6,28 @@ class SeparateChaining
   def initialize(size)
     @max_load_factor = 0.7
     @array = Array.new(size)
-    @nodes = 0
+    @nodes = 0.0
   end
+
 
   def []=(key, value)
     @index = index(key, @array.length)
     new_entry = Node.new(key,value)
     chain = @array[@index]
     if chain != nil
+    @nodes = @nodes + 1
       if @nodes >= 5 || load_factor > @max_load_factor
         resize
         chain.add_to_tail(new_entry)
       end
       chain.add_to_tail(new_entry)
     else
+    @nodes = @nodes + 1
       @array[@index] = LinkedList.new
       @array[@index].add_to_tail(new_entry)
     end
     chain = @array[@index]
-    @nodes += 1
   end
-
 
 
     #1. Go to index and see if anything is there (entry is either nil or linked_list).
@@ -53,8 +54,9 @@ class SeparateChaining
     # Calculate the current load factor
     #if load factor is greater than certain value then resize
     def load_factor
-      a = @nodes / @array.length
-      return a.to_f
+
+     @nodes / @array.length
+
     end
 
     # Simple method to return the number of items in the hash, same spot where i check size of linked_list
