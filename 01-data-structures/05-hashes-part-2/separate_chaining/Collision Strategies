@@ -1,3 +1,15 @@
+My Alternate Collision strategy take the sum of the ascii values of the key
+and subtracts the bytesize of the same string. I add in a multiplier for good measure.
+The index grows twice as.  quickly in this scenario
+
+def index(key, size)
+    diff = key.sum - key.bytesize * 2
+    diff % size
+  end
+
+
+
+
 Collision Resolution Strategies
 Source: https://courses.cs.washington.edu/courses/cse373/01sp/Lect13.pdf
 
@@ -9,10 +21,6 @@ Slower than quadratic probing
 
 
 Extendible Hashing- Used when large databases are stored on disks. Data is stored using bit patterns
-
-
-
-
 
 
 
