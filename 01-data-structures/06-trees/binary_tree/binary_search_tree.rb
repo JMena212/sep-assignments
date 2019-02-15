@@ -1,21 +1,24 @@
 require_relative 'node'
 
 class BinarySearchTree
+attr_accessor :root
 
   def initialize(root)
-    @root = root
+    @root = root || nil
   end
 
   def insert(root, node)
-    if node.rating <= root.rating
-      if root.left = nil
-        node = root.left
+    if root == nil
+      node = root
+    elsif node.rating < root.rating
+      if root.left == nil
+         root.left = node
       else
-        insert (root.left, node)
+        insert(root.left, node)
       end
     else node.rating > root.rating
-      if root.right = nil
-        node = root.right
+      if root.right == nil
+        root.right = node
       else
         insert(root.right, node)
       end
