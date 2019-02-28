@@ -60,5 +60,19 @@ attr_accessor :root
   def printf(children=nil)
     #use a queue to track each node as it goes down each layer
     #start with root and go down each layer
+    queue = []
+    queue.push(@root)
+    output = []
+    while queue.length > 0
+      next_root = queue.slice!(0)
+      if next_root.left
+        queue.push(next_root.left)
+      end
+      if next_root.right
+        queue.push(next_root.right)
+      end
+      output.push("#{next_root.title}: #{next_root.rating}")
+    end
+    output.each {|x| print x, "\n"}
   end
 end
