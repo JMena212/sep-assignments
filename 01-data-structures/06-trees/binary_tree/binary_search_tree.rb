@@ -9,7 +9,7 @@ attr_accessor :root
 
   def insert(root, node)
     if root == nil
-      node = root
+      root = node
     elsif node.rating < root.rating
       if root.left == nil
          root.left = node
