@@ -1,11 +1,11 @@
 include RSpec
 
-require_relative 'binary_search_tree'
+require_relative 'min_binary_heap'
 
-RSpec.describe BinarySearchTree, type: Class do
+RSpec.describe MinBinaryHeap, type: Class do
   let (:root) { Node.new("The Matrix", 87) }
 
-  let (:tree) { BinarySearchTree.new(root) }
+  let (:tree) { MinBinaryHeap.new(root) }
   let (:pacific_rim) { Node.new("Pacific Rim", 72) }
   let (:braveheart) { Node.new("Braveheart", 78) }
   let (:jedi) { Node.new("Star Wars: Return of the Jedi", 80) }

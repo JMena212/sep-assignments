@@ -1,25 +1,49 @@
 require_relative 'node'
 
+
 class MinBinaryHeap
 attr_accessor :root
 
   def initialize(root)
-    @queue = Array.new
-    @root = queue[0]
+    @queue = [0]
+    @root = root
   end
 
-  def insert(root, node)
+  def insert(root, data)
+  entry = Node.new(root, data)
 
-
-
+  if @root == nil
+      @root = entry
   end
 
-  def enqueue(element)
-     @queue.insert(-1, element)
-      @tail = @queue[-1]
-      @head = @queue[0]
+
+    queue = [@root]
+    while queue.length > 0
+      next_root = queue.shift
+      if next_root.left == nil
+        next_root.left = entry
+        puts entry.title
+      end
+      if next_root.right == nil
+        next_root.right = entry
+        puts entry.title 
+      end
+      if next_root.left && next_root.right
+        queue.push(next_root.left)
+        queue.push(next_root.right)
+      else break
+      end
 
     end
+
+
+
+
+
+
+end
+
+
 
 
   #Breadth first
@@ -36,5 +60,6 @@ attr_accessor :root
   def print(root)
     #use a queue to track each node as it goes down each layer
     #start with root and go down each layer
+  end
 
 end
