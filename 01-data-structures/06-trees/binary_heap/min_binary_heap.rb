@@ -160,7 +160,7 @@ end
       queue.enq(parent_root.right)
       end
 
-      puts "Title: " + parent_root.title + " Rating: " + parent_root.rating.to_s
+      puts parent_root.title + " Rating: " + parent_root.rating.to_s + "\n"
 
     end
   end

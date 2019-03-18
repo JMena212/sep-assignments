@@ -3,96 +3,141 @@ include RSpec
 require_relative 'min_binary_heap'
 
 RSpec.describe MinBinaryHeap, type: Class do
-  let (:root) { Node.new("The Matrix", 87) }
+  let (:root) { Node.new("Braveheart", 78) }
 
   let (:tree) { MinBinaryHeap.new(root) }
   let (:pacific_rim) { Node.new("Pacific Rim", 72) }
-  let (:braveheart) { Node.new("Braveheart", 78) }
-  let (:jedi) { Node.new("Star Wars: Return of the Jedi", 80) }
-  let (:donnie) { Node.new("Donnie Darko", 85) }
-  let (:inception) { Node.new("Inception", 86) }
-  let (:district) { Node.new("District 9", 90) }
-  let (:shawshank) { Node.new("The Shawshank Redemption", 91) }
-  let (:martian) { Node.new("The Martian", 92) }
-  let (:hope) { Node.new("Star Wars: A New Hope", 93) }
-  let (:empire) { Node.new("Star Wars: The Empire Strikes Back", 94) }
-  let (:mad_max_2) { Node.new("Mad Max 2: The Road Warrior", 98) }
+  let (:star_wars) { Node.new("Star Wars: Return of the Jedi", 80) }
+  let (:i_am_legend) {Node.new("I Am Legend", 69)}
+  let (:avengers)  {Node.new("Marvel's Avengers", 92)}
+  let (:life_of_pi)  {Node.new("Life of Pi", 86)}
+  let (:jungle_book) {Node.new("The Jungle Book", 95)}
+  let (:train_dragon)  {Node.new("How to Train Your Dragon: Hidden World", 91)}
+  let (:too_fast)  {Node.new("2 Fast 2 Furious", 38)}
+
 
   describe "#insert(data)" do
-    it "properly inserts a new node as a left child" do
+      it "properly inserts node in heap order" do
       tree.insert(root, pacific_rim)
-      expect(root.left.title).to eq "Pacific Rim"
-    end
-
-    it "properly inserts a new node as a left-left child" do
-      tree.insert(root, braveheart)
-      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(root.title).to eq "2 Fast 2 Furious"
+      expect(root.left.title).to eq "I Am Legend"
       expect(root.left.left.title).to eq "Pacific Rim"
-    end
+      expect(root.left.right.title).to eq "Marvel's Avengers"
+      expect(root.right.title).to eq "Star Wars: Return of the Jedi"
+      expect(root.right.left.title).to eq "Life of Pi"
+      expect(root.right.right.title).to eq "The Jungle Book"
+      expect(root.left.left.left.title).to eq "How to Train Your Dragon: Hidden World"
+      expect(root.left.left.right.title).to eq "Braveheart"
 
-    it "properly inserts a new node as a left-right child" do
-      tree.insert(root, donnie)
-      tree.insert(root, inception)
-      expect(root.left.right.title).to eq "Inception"
-    end
+      end
 
-    it "properly inserts a new node as a right child" do
-      tree.insert(root, district)
-      expect(root.right.title).to eq "District 9"
-    end
-
-    it "properly inserts a new node as a right-left child" do
-      tree.insert(root, hope)
-      tree.insert(root, martian)
-      expect(root.right.left.title).to eq "The Martian"
-    end
-
-    it "properly inserts a new node as a right-right child" do
-      tree.insert(root, empire)
-      tree.insert(root, mad_max_2)
-      expect(root.right.right.title).to eq "Mad Max 2: The Road Warrior"
-    end
+     it "meets Minimum heap properties. A higher node must have a lower rating than a lower node" do
+       tree.insert(root, pacific_rim)
+       tree.insert(root, star_wars)
+       tree.insert(root, i_am_legend)
+       tree.insert(root, avengers)
+       tree.insert(root, life_of_pi)
+       tree.insert(root, jungle_book)
+       tree.insert(root, train_dragon)
+       tree.insert(root, too_fast)
+       expect(root.left.rating < root.left.left.rating) && (root.left.rating < root.left.right.rating)
+       expect (root.rating < root.left.rating && root.rating < root.right.rating)
+   end
   end
+
+
+
 
   describe "#find(data)" do
     it "handles nil gracefully" do
-      tree.insert(root, empire)
-      tree.insert(root, mad_max_2)
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
       expect(tree.find(root, nil)).to eq nil
     end
 
     it "properly finds a left node" do
       tree.insert(root, pacific_rim)
-      expect(tree.find(root, pacific_rim.title).title).to eq "Pacific Rim"
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, "I Am Legend").title).to eq "I Am Legend"
     end
 
     it "properly finds a left-left node" do
-      tree.insert(root, braveheart)
       tree.insert(root, pacific_rim)
-      expect(tree.find(root, pacific_rim.title).title).to eq "Pacific Rim"
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, "Pacific Rim").title).to eq "Pacific Rim"
     end
 
     it "properly finds a left-right node" do
-      tree.insert(root, donnie)
-      tree.insert(root, inception)
-      expect(tree.find(root, inception.title).title).to eq "Inception"
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, avengers.title).title).to eq "Marvel's Avengers"
     end
 
     it "properly finds a right node" do
-      tree.insert(root, district)
-      expect(tree.find(root, district.title).title).to eq "District 9"
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, star_wars.title).title).to eq "Star Wars: Return of the Jedi"
     end
 
     it "properly finds a right-left node" do
-      tree.insert(root, hope)
-      tree.insert(root, martian)
-      expect(tree.find(root, martian.title).title).to eq "The Martian"
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, life_of_pi.title).title).to eq "Life of Pi"
     end
 
     it "properly finds a right-right node" do
-      tree.insert(root, empire)
-      tree.insert(root, mad_max_2)
-      expect(tree.find(root, mad_max_2.title).title).to eq "Mad Max 2: The Road Warrior"
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      expect(tree.find(root, jungle_book.title).title).to eq "The Jungle Book"
     end
   end
 
@@ -102,75 +147,98 @@ RSpec.describe MinBinaryHeap, type: Class do
     end
 
     it "properly deletes a left node" do
-      tree.insert(root, hope)
-      tree.delete(root, hope.title)
-      expect(tree.find(root, hope.title)).to be_nil
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "Pacific Rim")
+      expect(tree.find(root, "Pacific Rim")).to be_nil
     end
 
     it "properly deletes a left-left node" do
-      tree.insert(root, braveheart)
       tree.insert(root, pacific_rim)
-      tree.delete(root, pacific_rim.title)
-      expect(tree.find(root, pacific_rim.title)).to be_nil
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "I Am Legend")
+      expect(tree.find(root, "I Am Legend")).to be_nil
     end
 
     it "properly deletes a left-right node" do
-      tree.insert(root, donnie)
-      tree.insert(root, inception)
-      tree.delete(root, inception.title)
-      expect(tree.find(root, inception.title)).to be_nil
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "Marvel's Avengers")
+      expect(tree.find(root, "Marvel's Avengers")).to be_nil
     end
 
     it "properly deletes a right node" do
-      tree.insert(root, district)
-      tree.delete(root, district.title)
-      expect(tree.find(root, district.title)).to be_nil
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "Star Wars: Return of the Jedi")
+      expect(tree.find(root, "Star Wars: Return of the Jedi")).to be_nil
     end
 
     it "properly deletes a right-left node" do
-      tree.insert(root, hope)
-      tree.insert(root, martian)
-      tree.delete(root, martian.title)
-      expect(tree.find(root, martian.title)).to be_nil
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "Life of Pi")
+      expect(tree.find(root, "Life of Pi")).to be_nil
     end
 
     it "properly deletes a right-right node" do
-      tree.insert(root, empire)
-      tree.insert(root, mad_max_2)
-      tree.delete(root, mad_max_2.title)
-      expect(tree.find(root, mad_max_2.title)).to be_nil
+      tree.insert(root, pacific_rim)
+      tree.insert(root, star_wars)
+      tree.insert(root, i_am_legend)
+      tree.insert(root, avengers)
+      tree.insert(root, life_of_pi)
+      tree.insert(root, jungle_book)
+      tree.insert(root, train_dragon)
+      tree.insert(root, too_fast)
+      tree.delete(root, "The Jungle Book")
+      expect(tree.find(root, "The Jungle Book")).to be_nil
     end
   end
 
-  describe "#printf" do
+  describe "#print" do
      specify {
-       expected_output = "The Matrix: 87\nStar Wars: Return of the Jedi: 80\nStar Wars: A New Hope: 93\nPacific Rim: 72\nInception: 86\nThe Martian: 92\nStar Wars: The Empire Strikes Back: 94\nBraveheart: 78\nThe Shawshank Redemption: 91\nMad Max 2: The Road Warrior: 98\nDistrict 9: 90\n"
-       tree.insert(root, hope)
-       tree.insert(root, empire)
-       tree.insert(root, jedi)
-       tree.insert(root, martian)
+       expected_output = "2 Fast 2 Furious Rating: 38\nI Am Legend Rating: 69\nStar Wars: Return of the Jedi Rating: 80\nPacific Rim Rating: 72\nMarvel's Avengers Rating: 92\nLife of Pi Rating: 86\nThe Jungle Book Rating: 95\nHow to Train Your Dragon: Hidden World Rating: 91\nBraveheart Rating: 78\n"
        tree.insert(root, pacific_rim)
-       tree.insert(root, inception)
-       tree.insert(root, braveheart)
-       tree.insert(root, shawshank)
-       tree.insert(root, district)
-       tree.insert(root, mad_max_2)
-       expect { tree.printf }.to output(expected_output).to_stdout
+       tree.insert(root, star_wars)
+       tree.insert(root, i_am_legend)
+       tree.insert(root, avengers)
+       tree.insert(root, life_of_pi)
+       tree.insert(root, jungle_book)
+       tree.insert(root, train_dragon)
+       tree.insert(root, too_fast)
+       expect { tree.print(root) }.to output(expected_output).to_stdout
      }
 
-     specify {
-       expected_output = "The Matrix: 87\nBraveheart: 78\nMad Max 2: The Road Warrior: 98\nPacific Rim: 72\nInception: 86\nDistrict 9: 90\nStar Wars: Return of the Jedi: 80\nThe Shawshank Redemption: 91\nThe Martian: 92\nStar Wars: The Empire Strikes Back: 94\nStar Wars: A New Hope: 93\n"
-       tree.insert(root, mad_max_2)
-       tree.insert(root, district)
-       tree.insert(root, shawshank)
-       tree.insert(root, braveheart)
-       tree.insert(root, inception)
-       tree.insert(root, pacific_rim)
-       tree.insert(root, martian)
-       tree.insert(root, jedi)
-       tree.insert(root, empire)
-       tree.insert(root, hope)
-       expect { tree.printf }.to output(expected_output).to_stdout
-     }
+
   end
 end
