@@ -39,7 +39,7 @@ attr_accessor :root
       return nil
     end
     #go as far left as you can then right, use recursion
-    #call left if you can otherwise call righ
+    #call left if you can, otherwise call right
   end
 
   def delete(root, data)

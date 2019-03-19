@@ -1,0 +1,22 @@
+BinaryTree 10,000           0.030000   0.000000   0.030000 (  0.028402)
+Heap 10,000                44.110000   0.100000  44.210000 ( 44.518867)
+BinaryTree find 5,000       0.010000   0.000000   0.010000 (  0.011617)
+Heap find 5,000            23.440000   0.060000  23.500000 ( 23.596351)
+BinaryTree delete 5,000     0.010000   0.000000   0.010000 (  0.012784)
+Heap delete 5,000          23.750000   0.070000  23.820000 ( 23.918351)
+
+
+
+How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
+Insertion in a binary tree is exponentially less time consuming than heap insert.
+
+How much time does finding 5000 in the Binary Search Tree consume compared to the Heap?
+Heap was much slower in all processes, surprisingly. May have to look at my find function.
+
+How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
+A deletion in Heap was exponentially slower than in search tree.
+
+When would you use a Binary Search Tree and why?
+
+
+When would you use an Heap and why?

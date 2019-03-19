@@ -1,24 +1,6 @@
 require_relative 'node'
 
 
-class Node
-  attr_accessor :title
-  attr_accessor :rating
-  attr_accessor :left
-  attr_accessor :right
-
-  def initialize(title, rating)
-    @title = title
-    @rating = rating
-    left = nil
-    right = nil
-  end
-
-
-
-end
-
-
 class MinBinaryHeap
 attr_accessor :root
 
@@ -89,9 +71,6 @@ def insert(root, node)
 
 @root
 end
-
-
-
 
 
 def find_parent(root, node)
