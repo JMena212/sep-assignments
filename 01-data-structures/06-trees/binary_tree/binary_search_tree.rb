@@ -42,6 +42,9 @@ attr_accessor :root
     #call left if you can, otherwise call right
   end
 
+
+  
+
   def delete(root, data)
     if root == nil || data == nil
       return nil

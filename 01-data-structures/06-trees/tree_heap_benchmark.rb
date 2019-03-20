@@ -14,52 +14,54 @@ n = 10000
 Benchmark.bm(25) do |create|
 
 create.report("BinaryTree 10,000") do
-    for i in 0..n-1 do
-     node = Node.new(binary_tree, Random.rand(n))
-     binary_tree.insert(root, node)
+    queue = (1..n).to_a
+   while !queue.empty?
+     x = queue.slice!(0)
+     node = Node.new("root", x)
+      binary_tree.insert(root, node)
    end
-end
+
+   end
+
 
   create.report ("Heap 10,000") do
-    for i in 1..n do
-      node = Node.new(min_heap, Random.rand(n))
+    queue = (1..n).to_a
+   while !queue.empty?
+     x = queue.slice!(0)
+     node = Node.new("root", x)
       min_heap.insert(root, node)
-    end
+   end
+
   end
+
 
 
 
 #benchmark finding 5,000 in min_heap vs binary_tree
-find_node = Node.new("find", 5000)
-min_heap.insert(root, find_node)
-binary_tree.insert(root, find_node)
+
 
 create.report("BinaryTree find 5,000") do
-  for i in 0..n-1 do
-   binary_tree.find(root, "5000")
+   binary_tree.find(root, n/2)
  end
-end
 
 create.report ("Heap find 5,000") do
-  for i in 1..n do
-    min_heap.find(root, "5000")
+
+    min_heap.find_rating(root, n/2)
   end
-end
+
 
 
 
 #benchmark deletion in min_heap vs binary_tree
 create.report("BinaryTree delete 5,000") do
-  for i in 0..n-1 do
-   binary_tree.delete(root, "5000")
+   binary_tree.delete(root, n/2)
  end
-end
+
 
 create.report ("Heap delete 5,000") do
-  for i in 1..n do
-    min_heap.delete(root, "5000")
+    min_heap.delete_by_rating(root, n/2)
   end
-end
+
 
 
 end

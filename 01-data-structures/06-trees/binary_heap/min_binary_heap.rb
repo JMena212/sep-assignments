@@ -92,12 +92,13 @@ end
 
 
 
-  #Depth First
+  #Depth First, finds movie title
   def find(root, data)
       if root && data
         if root.title == data
           return root
         end
+
         left = find(root.left, data) if root.left
         right = find(root.right, data) if root.right
         return left || right
@@ -107,6 +108,20 @@ end
       end
   end
 
+#depth first, finds movie with specific rating
+  def find_rating(root, rating)
+      if root && rating
+        if root.rating == rating
+          return root
+        end
+        left = find_rating(root.left, rating) if root.left
+        right = find_rating(root.right, rating) if root.right
+        return left || right
+
+      else root == nil || data == nil
+        return nil
+      end
+  end
 
 
   def delete(root, data)
@@ -114,6 +129,21 @@ end
       return nil
     else
       delete_node = find(root, data)
+      if delete_node
+        delete_node.title = nil
+        delete_node.rating = nil
+      else
+        return nil
+      end
+    end
+
+  end
+
+  def delete_by_rating(root, rating)
+    if root == nil || rating == nil
+      return nil
+    else
+      delete_node = find_rating(root, rating)
       if delete_node
         delete_node.title = nil
         delete_node.rating = nil
