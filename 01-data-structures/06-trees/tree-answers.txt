@@ -1,23 +1,34 @@
                               user     system      total        real
-BinaryTree 10,000           6.660000   0.000000   6.660000 (  6.663343)
-Heap 10,000                 6.810000   0.020000   6.830000 (  6.833323)
-BinaryTree find 5,000       0.000000   0.000000   0.000000 (  0.000011)
-Heap find 5,000             0.000000   0.000000   0.000000 (  0.001655)
-BinaryTree delete 5,000     0.000000   0.000000   0.000000 (  0.000009)
-Heap delete 5,000           0.010000   0.000000   0.010000 (  0.001751)
+BinaryTree 10,000           6.640000   0.010000   6.650000 (  6.645490)
+Heap 10,000                 6.850000   0.020000   6.870000 (  6.877457)
+BinaryTree find 5,000       0.000000   0.000000   0.000000 (  0.001669)
+Heap find 5,000             0.000000   0.000000   0.000000 (  0.001637)
+BinaryTree delete 5,000     0.010000   0.000000   0.010000 (  0.001651)
+Heap delete 5,000           0.000000   0.000000   0.000000 (  0.001632)
+
+
+For context on my benchmark, I created a find_rating and delete_by_rating function for both
+my BinarySearchTree class and MinBinaryHeap class. Those classes were designed to handle data
+that had both strings("movie title") and integers(rating). The sorting was done based on the rating.
+When inserting each node, each node was given a standard "root" title and the ratings were from 0 to "n".
 
 
 
 How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
-Insertion in a binary tree is exponentially less time consuming than heap insert.
+Insertion in a binary tree is slightly less time consuming than heap insert.
 
 How much time does finding 5000 in the Binary Search Tree consume compared to the Heap?
-Heap was much slower in all processes, surprisingly. May have to look at my find function.
+Heap was slightly faster at finding 5000.
 
 How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
-A deletion in Heap was exponentially slower than in search tree.
+A deletion in Heap was slightly faster than a in a binary tree.
 
 When would you use a Binary Search Tree and why?
-I would use a binary tree when
+I would use a binary tree when the speed of inserting data for a certain function is of utmost importance.
+In a BST, I only need to check for the first open spot at the bottom of the tree and compare it to its
+parent node to place it either left(lesser) or right (greater).
 
 When would you use an Heap and why?
+I would use a heap and heapsort for creating a priority queue when it is important to know
+that the value of a node at a certain level in the tree is higher/lower than ALL values
+below it. For example, in a MinHeap, I know that the root has the lowest value relative to all nodes.

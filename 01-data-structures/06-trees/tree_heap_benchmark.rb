@@ -11,7 +11,7 @@ min_heap = MinBinaryHeap.new(root)
 
 n = 10000
 #benchmark insert for tree and min_heap
-Benchmark.bm(25) do |create|
+Benchmark.bm(20) do |create|
 
 create.report("BinaryTree 10,000") do
     queue = (1..n).to_a
@@ -22,6 +22,7 @@ create.report("BinaryTree 10,000") do
    end
 
    end
+
 
 
   create.report ("Heap 10,000") do
@@ -41,7 +42,7 @@ create.report("BinaryTree 10,000") do
 
 
 create.report("BinaryTree find 5,000") do
-   binary_tree.find(root, n/2)
+   binary_tree.find_rating(root, n/2)
  end
 
 create.report ("Heap find 5,000") do
@@ -54,14 +55,11 @@ create.report ("Heap find 5,000") do
 
 #benchmark deletion in min_heap vs binary_tree
 create.report("BinaryTree delete 5,000") do
-   binary_tree.delete(root, n/2)
+   binary_tree.delete_by_rating(root, n/2)
  end
 
 
 create.report ("Heap delete 5,000") do
     min_heap.delete_by_rating(root, n/2)
   end
-
-
-
 end

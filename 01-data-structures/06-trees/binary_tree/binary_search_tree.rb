@@ -42,8 +42,20 @@ attr_accessor :root
     #call left if you can, otherwise call right
   end
 
+  def find_rating(root, rating)
+      if root && rating
+        if root.rating == rating
+          return root
+        end
+        left = find_rating(root.left, rating) if root.left
+        right = find_rating(root.right, rating) if root.right
+        return left || right
 
-  
+      else root == nil || data == nil
+        return nil
+      end
+  end
+
 
   def delete(root, data)
     if root == nil || data == nil
@@ -57,6 +69,21 @@ attr_accessor :root
         return nil
       end
     end
+  end
+
+  def delete_by_rating(root, rating)
+    if root == nil || rating == nil
+      return nil
+    else
+      delete_node = find_rating(root, rating)
+      if delete_node
+        delete_node.title = nil
+        delete_node.rating = nil
+      else
+        return nil
+      end
+    end
+
   end
 
   # Recursive Breadth First Search
