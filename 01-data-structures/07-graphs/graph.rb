@@ -58,4 +58,4 @@ end
 
 
 test = Graph.new
-puts test.find_kevin_bacon(zoe_saldana)
+test.find_kevin_bacon(zoe_saldana)
