@@ -1,3 +1,8 @@
+
+The below CALCULATE_TIP pseudocode is how I would determine how much to
+tip for a specific quality of service given. It assumes the subtotal is fixed
+and that the tip depends on quality of service (BAD/GOOD/OUTSTANDING)
+
 DEF CALCULATE_TIP(TOTAL, SERVICE)
   SET TOTAL TO n
 
@@ -15,10 +20,17 @@ DEF CALCULATE_TIP(TOTAL, SERVICE)
     RETURN TOTAL
 END DEF
 
+
+The COMMUTE_TO_WORK pseudocode uses time as the main parameter.
+If I have more than 45 minutes, I will commute on the train unless my preferred train
+has delays. In that case I use an alternative.
+If I need to be at work in under 40 minutes I will take an uber.
+
+
 DEF COMMUTE_TO_WORK(t)
   SET TIME_TO_COMMUTE to t
 
-  IF t > 45 min
+  IF t >= 40 min
     take the A train UNLESS A train is delayed
       else take the 1 train
   ELSE
@@ -27,6 +39,9 @@ DEF COMMUTE_TO_WORK(t)
 
 END DEF
 
+
+This WHAT_TO_WEAR pseudocode uses TEMPERATURE as the main parameter.
+The colder it gets, the more heavy clothing is required.
 
 
 DEF WHAT_TO_WEAR(t)
