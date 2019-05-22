@@ -1,0 +1,31 @@
+1. Given the alphabetically sorted collection in this checkpoint,
+how many iterations would it take to find the value G using linear search?
+
+It would take 7 iterations for our linear search to find the value "G" in an
+alphabetically sorted collection. G is in the sixth index which makes it the
+seventh item.
+
+2. Given the alphabetically sorted collection in this checkpoint,
+ how many iterations would it take to find the value G using binary search?
+
+ITERATION ONE
+The binary search will set A as the LOW, D as the MID, and G as the High.
+It will compare G to the mid and realize G is higher than D.
+
+ITERATION TWO
+The low becomes E (previous MID  plus one), F is MID, and the high remains G.
+Everything below E is discarded.
+We compare G to MID which is F.
+F < G, so low is now F + 1 which is G
+
+
+ITERATION THREE
+G is the LOW, HIGH, AND MID. We found G.
+
+3. Calculate fib(10), fib(11), fib(12) by hand.
+
+fib (10) = fib(9) + fib (8) = 34 + 21 = 55
+
+fib (11) = fib(10) + fib(9) = 55 + 34 = 89
+
+fib(12) = fib (11) + fib(10) = 89 + 55 = 144
