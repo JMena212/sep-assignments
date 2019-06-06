@@ -24,7 +24,7 @@ class ArraySorting
  i = p
 
   while i < r
-    puts pivot
+    #puts pivot
     if array[i] <= pivot
       swap(array, i, part_index)
       part_index += 1
@@ -43,15 +43,15 @@ class ArraySorting
 
     # number of buckets we want to designate
     bucket_num = k
-    puts "#{bucket_num} buckets"
+    #puts "#{bucket_num} buckets"
     max = array.max
-    puts "#{max} is max"
+    #puts "#{max} is max"
     min = array.min
-    puts "#{min} is min"
+  #  puts "#{min} is min"
 
     #the range of each bucket
     bucket_range = ((max-min) / bucket_num).floor
-    puts "bucket range is #{bucket_range}"
+  #  puts "bucket range is #{bucket_range}"
 
 
     #creates an array which houses k # of arrays
@@ -93,20 +93,3 @@ class ArraySorting
 end
 
 end
-
-def array_create(n)
-  array = []
-  i = 0
-  (0..n).each do |i|
-  array.push(i)
-  i += 1
-  end
-  array
-end
-
-
-test= ArraySorting.new
-
-test_array = array_create(50).shuffle
-
-test.bucketsort(test_array, k = 10)

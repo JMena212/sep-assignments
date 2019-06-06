@@ -1,0 +1,12 @@
+                          user     system      total        real
+Heap Sort 50 items     0.000000   0.000000   0.000000 (  0.000205)
+                        user     system      total        real
+bubblesort 50 items    0.000000   0.000000   0.000000 (  0.000184)
+                          user     system      total        real
+bucketsort 50 items    0.000000   0.000000   0.000000 (  0.000058)
+                        user     system      total        real
+merge_sort 50 items    0.010000   0.000000   0.010000 (  0.000190)
+                          user     system      total        real
+insertion_sort 50 items  0.000000   0.000000   0.000000 (  0.000054)
+                          user     system      total        real
+quicksort 50 items     0.000000   0.000000   0.000000 (  0.000047)

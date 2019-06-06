@@ -12,11 +12,11 @@ def heapsort(array)
 
   last = array.length - 1
   return array if last <= 1
-  puts "This array has #{last + 1} items"
+
 
   #creates the starting unsorted array
   a = array
-  puts "#{a}"
+
 
   #fulfills qualities of max heap
   max_heap(array)
@@ -65,6 +65,3 @@ def sift_down(array, start, last)
   end
 
 end
-
-arr = [8,2,16,3,9,1,20,7,19,5,101,17, -12, -30,0]
-heapsort(arr)

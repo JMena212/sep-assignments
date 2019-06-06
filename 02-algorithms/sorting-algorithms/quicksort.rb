@@ -22,7 +22,7 @@ end
  i = p
 
   while i < r
-    puts pivot
+    #puts pivot
     if array[i] <= pivot
       swap(array, i, part_index)
       part_index += 1
