@@ -13,7 +13,7 @@ def array_create(n)
   array.push(i)
   i += 1
   end
-  array
+  array.shuffle
 end
 
 n = 50
@@ -30,7 +30,9 @@ Benchmark.bm(20) do |create|
 
 create.report("bubblesort 50 items") do
     test_array = array_create(n).shuffle
-    bubble_sort(test_array)
+    50.times do
+      bubble_sort(test_array)
+    end
    end
 end
 

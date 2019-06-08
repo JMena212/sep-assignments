@@ -1,12 +1,36 @@
                           user     system      total        real
-Heap Sort 50 items     0.000000   0.000000   0.000000 (  0.000205)
-                        user     system      total        real
-bubblesort 50 items    0.000000   0.000000   0.000000 (  0.000184)
-                          user     system      total        real
-bucketsort 50 items    0.000000   0.000000   0.000000 (  0.000058)
-                        user     system      total        real
-merge_sort 50 items    0.010000   0.000000   0.010000 (  0.000190)
-                          user     system      total        real
-insertion_sort 50 items  0.000000   0.000000   0.000000 (  0.000054)
-                          user     system      total        real
-quicksort 50 items     0.000000   0.000000   0.000000 (  0.000047)
+Heap Sort 50 items        0.000000   0.000000   0.000000 (  0.000278)
+bubblesort 50 items       0.000000   0.000000   0.000000 (  0.000330)
+bucketsort 50 items       0.000000   0.000000   0.000000 (  0.000138)
+merge_sort 50 items       0.000000   0.000000   0.000000 (  0.000181)
+insertion_sort 50 items   0.000000   0.000000   0.000000 (  0.000049)
+quicksort 50 items        0.000000   0.000000   0.000000 (  0.000050)
+
+
+In my benchmark tests the fastest sorting algorithms are:
+1. quicksort
+2. insertion_sort
+3. bucketsort (which uses insertion_sort)
+4. merge_sort
+5. heapsort
+6. bubblesort
+
+
+Looking at the bar chart, speculate on why you think
+some sort algorithms are faster than others and provide rationale as to your thought process.
+
+Quicksort is efficient in this small dataset because it chooses a pivot and divides data into
+smaller sets of date for comparison and swaps.
+
+insertion_sort works well by iterating through the data set and creating a new array and inserting
+items in the correct order in the new array. It may be that for this small data set, the algorithm
+performed in its best case n scenario versus typical n^2.
+
+bucketsort is another algorithm that divides data into smaller sets and then uses a simple sorter
+like insertion sort. A bit more complex as it involves the process of dividing values
+into semi-sorted buckets, combining the buckets into a single array, and then sorting the new array.
+
+
+
+merge_sort typically runs on O(n log n) but maybe at a disadvantage in a smaller dataset as it
+involves splitting the data set, having various conditionals and comparisons and some recursion. 

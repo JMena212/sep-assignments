@@ -1,58 +1,46 @@
 class ArraySorting
 
 
-  def quicksort(array, p, r)
-    if p < r
-      part_index = partition(array, p , r)
-      quicksort(array, p, part_index-1)
-      quicksort(array, part_index+1, r)
-    end
-    array
-  end
+ def insertion_sort(collection)
+   # #1
+   sorted_collection = [collection.delete_at(0)]
 
-#this function swaps items in an array by placing the value at the respective index of the other value and vice versa
- def swap(array, firstIndex, secondIndex)
-    temp = array[firstIndex]
-    array[firstIndex] = array[secondIndex]
-    array[secondIndex] = temp
-  end
+   for val in collection
+     sorted_collection_index = 0
+     # #2
+     while sorted_collection_index < sorted_collection.length
+       if val <= sorted_collection[sorted_collection_index]
+         # #3
+         sorted_collection.insert(sorted_collection_index, val)
+         break
+       elsif sorted_collection_index == sorted_collection.length - 1
+         # #4
+         sorted_collection.insert(sorted_collection_index + 1, val)
+         break
+       end
 
+       sorted_collection_index += 1
+     end
+   end
 
- def partition(array, p, r)
- pivot = array[r]
- part_index = p
- i = p
+   sorted_collection
+ end
 
-  while i < r
-    #puts pivot
-    if array[i] <= pivot
-      swap(array, i, part_index)
-      part_index += 1
-    end
-    i += 1
-  end
-  swap(array,part_index, r )
+def bucketsort(array, k = 10)
+n = array.length
 
-  return part_index
-  end
+# number of buckets we want to designate
+bucket_num = k
+#puts "#{bucket_num} buckets"
+max = array.max
+#puts "#{max} is max"
+min = array.min
+#puts "#{min} is min"
 
-
-
-  def bucketsort(array, k = 10)
-    n = array.length
-
-    # number of buckets we want to designate
-    bucket_num = k
-    #puts "#{bucket_num} buckets"
-    max = array.max
-    #puts "#{max} is max"
-    min = array.min
-  #  puts "#{min} is min"
-
-    #the range of each bucket
-    bucket_range = ((max-min) / bucket_num).floor
-  #  puts "bucket range is #{bucket_range}"
-
+#the range of each bucket
+bucket_range = ((max-min) / bucket_num).floor
+#puts "bucket range is #{bucket_range}"
+#here we decide which bucket the value goes in
 
     #creates an array which houses k # of arrays
      buckets = Array.new(bucket_num)
@@ -69,27 +57,36 @@ class ArraySorting
       end
       buckets[bucket_index].push(array[i])
       end
-     #here we use quicksort within each bucket
-     (0..buckets.length-1).each do |i|
-      quicksort(buckets[i], 0, buckets[i].length-1)
-      end
 
 
-     k = 0
-     final_array = []
+
+    #join the buckets into one semi-ordered array
+    k = 0
+     single_array = []
      while k < buckets.length
         p = 0
         while p < buckets[k].length
-         final_array.push(buckets[k][p])
+         single_array.push(buckets[k][p])
           p+=1
          end
      k+=1
-
      end
 
-     return final_array
+     #use insertion_sort to sort the semi-ordered single array
+insertion_sort(single_array)
+
 
 
 end
 
+end
+
+def array_create(n)
+  array = []
+  i = 0
+  (0..n).each do |i|
+  array.push(i)
+  i += 1
+  end
+  array
 end
