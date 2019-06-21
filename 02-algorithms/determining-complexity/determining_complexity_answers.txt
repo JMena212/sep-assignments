@@ -67,20 +67,12 @@ There are three scenarios here.
 3. If n is not zero or 1. For example if n = 4,
       We go to the 'else' conditional and recursive calls numbers(4-1) + numbers(4-2) is run.
       Numbers(3) + numbers(2) doesn't satisfy any criteria or finish the process.
-          Recursion #1- Numbers(3) recursively breaks into numbers(2) + numbers(1) which results in numbers (2) + 1
+          Recursion #1- Numbers(3) recursively breaks into numbers(2) + numbers(1) which results in numbers(2) + 1
               Recursion #1A- Numbers(2) becomes numbers(1) + numbers(0). This solves to 1 + 0 PLUS the 1 from Recursion 1.
 
 This is the fibonacci sequence!
 
 We can assume that the time it takes to process numbers(n-2) is just about the same as numbers(n-1).
-2 * T(n-1)  = 2T(n-2) + constant
-In the case of k = 4
-2 x (2T(n-2) +c)  +c =  4T(n-4) + 3c
-
-This breaks downs to 2^k * T(n-2k) + (2^k-1) * c
-The largest time is the 2^k.
-
-
 The Big-O complexity here is O(2^n)
 
 
@@ -167,4 +159,4 @@ Big-O complexity for this type of quicksort algorithm is 0(n^2).
 We have various variable assignments and if statements that run on constant time.
 The most time consuming portion of the algorithm occurs in the recursive calls at the end.
 This can happen when the partition process picks the greatest (or smallest) element in the collection as
-the pivot. 
+the pivot.
