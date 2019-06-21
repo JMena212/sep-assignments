@@ -166,5 +166,5 @@ end
 Big-O complexity for this type of quicksort algorithm is 0(n^2).
 We have various variable assignments and if statements that run on constant time.
 The most time consuming portion of the algorithm occurs in the recursive calls at the end.
-This can happen when the partition process picks the greatest element in the collection as
+This can happen when the partition process picks the greatest (or smallest) element in the collection as
 the pivot. 
