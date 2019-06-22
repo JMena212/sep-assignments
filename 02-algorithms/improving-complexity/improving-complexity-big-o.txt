@@ -1,0 +1,21 @@
+The Big 0 for version 1 is n^2 * k.
+First the algorithm has to go through every value in every unsorted possible array.
+In a case of n arrays each including k values, we must iterate through each value  n * k = nk.
+Once we've created a combined array, we once again go through each value in the array, compare it to the current value
+and the insert it at the right index. This portion has an n time COMPLEXITY.
+n*k *n = n^2 * k
+
+
+The Big 0 for version 2 is n*k (nlogn) which is the the Big-O for merge_sort.
+Mergesort has the
+Again, we first have to combine the numerous arrays and all their values.
+We've established that this will take n * k time complexity.
+We multiply this by the time complexity of merge sort and get n*k (nlog(n)).
+
+
+
+
+
+The Big O for version 3 is nk(n^2). n^2 is the Big-O of bubble sort.
+bubble_sort was my selection for optimizing space complexity as it works in place
+and does not create new arrays or copies in order to run its algorithm. 

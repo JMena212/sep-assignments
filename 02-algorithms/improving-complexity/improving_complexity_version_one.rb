@@ -21,10 +21,10 @@ def poorly_written_ruby(arrays)
          sorted_array.insert(i, val)
          break
 
-    #THIS ENTIRE ELSIF STATEMENT CAN BE ELIMINATED
-       #elsif i == sorted_array.length - 1
-        # sorted_array << val
-         #break
+
+       elsif i == sorted_array.length - 1
+        sorted_array << val
+         break
        end
        i+=1
      end
